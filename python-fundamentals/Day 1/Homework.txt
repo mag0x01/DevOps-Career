@@ -1,0 +1,23 @@
+1.Setup your local environment: 
+    - install python3 
+    - install pip3
+
+2.Write a program that request user to input 5 numbers, divide the numbers in two lists one for odd numbers and one for even numbers.     
+ 2.1 Check if there are numbers which are repeating and exclude them from the list.    
+ 2.2 Reverse lists without using reverse function.   
+ 2.3 Find out the average of set of integers from each list.     
+ 2.4 Calculate the sum of the two numbers.
+*Print the result of each step. 
+
+3.Write a program that request user to input following information and stores it in dictionary: 
+    - Given name
+    - Surname
+    - Data of Birth
+    - Hometown
+    - Job title
+  3.1 In temporary dictionary store the age of the person and the initials (first letter of given name and surname).
+  3.2 Merge the two dictionaries.
+  3.3 Print following sentence using format:        
+    “        
+    My name is <given_name>. I am <age> years old from <hometown>, working as <job_title>.        
+    “ 

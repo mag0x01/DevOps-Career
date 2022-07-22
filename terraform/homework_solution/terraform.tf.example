@@ -1,0 +1,10 @@
+terraform {
+  backend "s3" {
+    bucket     = "S3_BUCKET_NAME"
+    key        = "school-of-devops/terraform/homework.tfstate"
+    region     = "REGION"
+    access_key = "ACCESS_KEY"
+    secret_key = "SECRET_KEY"
+  }
+  required_version = "0.13.7"
+}

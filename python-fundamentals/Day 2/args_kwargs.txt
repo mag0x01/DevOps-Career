@@ -1,0 +1,8 @@
+#Question  1
+Define a function called myfunc that takes in an number of arguments, and return 
+the sum of those arguments.
+
+##################################################################################################################
+#Question  2
+Define a function that takes in an arguments of numbers, and returns a list containing only
+those arguments that are even. 

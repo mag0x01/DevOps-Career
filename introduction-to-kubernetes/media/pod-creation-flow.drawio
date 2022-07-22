@@ -1,0 +1,123 @@
+<mxfile host="65bd71144e">
+    <diagram id="8smPplIfXVcPZ0UMz77-" name="Page-1">
+        <mxGraphModel dx="1762" dy="1958" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <object placeholders="1" c4Name="ControlPlane" c4Type="ExecutionEnvironment" c4Application="K8s cluster v1.22" label="&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="7">
+                    <mxCell style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#ffffff;fontColor=#000000;align=left;arcSize=5;strokeColor=#000000;verticalAlign=bottom;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="70" y="70" width="600" height="470" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="kube-apiserver" c4Type="Component" c4Technology="API" c4Description=" " label="&lt;b&gt;%c4Name%&lt;/b&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;%c4Description%&lt;/div&gt;" id="8">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#85BBF0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#78A8D8;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="160" y="130" width="160" height="110.00000000000001" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="kubectl" c4Description="create pod" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="10">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=0.25;entryY=0;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="16" target="8">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="200" y="-10" as="sourcePoint"/>
+                            <mxPoint x="340" y="30" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="etcd" c4Type="Component" c4Technology="Database" c4Description="" label="&lt;b&gt;%c4Name%&lt;/b&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;%c4Description%&lt;/div&gt;" id="11">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#85BBF0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#78A8D8;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
+                        <mxGeometry x="120" y="380" width="160" height="110.00000000000001" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="api" c4Description="store object" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="12">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8" target="11">
+                        <mxGeometry x="-0.4286" width="160" relative="1" as="geometry">
+                            <mxPoint x="240" y="330" as="sourcePoint"/>
+                            <mxPoint x="400" y="330" as="targetPoint"/>
+                            <mxPoint as="offset"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <mxCell id="14" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="30" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="290" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <object c4Name="K8s Administrator" c4Description=" " label="&lt;b&gt;%c4Name%&lt;/b&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;%c4Description%&lt;/div&gt;" placeholders="1" c4Type="User" id="16">
+                    <mxCell style="html=1;dashed=0;whitespace=wrap;fillColor=#08427b;strokeColor=none;fontColor=#ffffff;shape=mxgraph.c4.person;align=center;metaEdit=1;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};rounded=0;" vertex="1" parent="1">
+                        <mxGeometry x="160" y="-190" width="160" height="160" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="auth &amp; autz" c4Description=" " label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="17">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=1;entryY=0.75;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="8" target="8">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="420" y="170" as="sourcePoint"/>
+                            <mxPoint x="580" y="170" as="targetPoint"/>
+                            <Array as="points">
+                                <mxPoint x="360" y="185"/>
+                                <mxPoint x="360" y="213"/>
+                            </Array>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <mxCell id="18" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="210" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <object placeholders="1" c4Name="kube-scheduler" c4Type="Component" c4Technology="API" c4Description=" " label="&lt;b&gt;%c4Name%&lt;/b&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;%c4Description%&lt;/div&gt;" id="19">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#85BBF0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#78A8D8;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
+                        <mxGeometry x="490" y="110" width="160" height="110.00000000000001" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="api" c4Description="response" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="20">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=0.75;entryY=1;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};exitX=0.75;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8" target="16">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="420" y="-60" as="sourcePoint"/>
+                            <mxPoint x="580" y="-60" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="api" c4Description="notify" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="21">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=-0.019;entryY=0.445;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};exitX=1;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8" target="19">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="530" y="-20" as="sourcePoint"/>
+                            <mxPoint x="690" y="-20" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="kube-control-manager" c4Type="Component" c4Technology="API" c4Description=" " label="&lt;b&gt;%c4Name%&lt;/b&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;%c4Description%&lt;/div&gt;" id="23">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#85BBF0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#78A8D8;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
+                        <mxGeometry x="325" y="380" width="160" height="110.00000000000001" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="24" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="100" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <object placeholders="1" c4Type="Relationship" c4Technology="api" c4Description="state update" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="26">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=0.5;entryY=0;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};exitX=0.75;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8" target="23">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="330" y="470" as="sourcePoint"/>
+                            <mxPoint x="490" y="470" as="targetPoint"/>
+                            <Array as="points">
+                                <mxPoint x="280" y="300"/>
+                                <mxPoint x="405" y="300"/>
+                            </Array>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <mxCell id="27" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="285" y="267" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Worker Nodes" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/VM_Scale_Sets.svg;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="-190" y="93" width="170" height="170" as="geometry"/>
+                </mxCell>
+                <object placeholders="1" c4Type="Relationship" c4Technology="api" c4Description="" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="29">
+                    <mxCell style="edgeStyle=none;rounded=0;html=1;entryX=1.008;entryY=0.547;jettySize=auto;orthogonalLoop=1;strokeColor=#707070;strokeWidth=2;fontColor=#707070;jumpStyle=none;dashed=1;metaEdit=1;metaData={&quot;c4Type&quot;:{&quot;editable&quot;:false}};exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8" target="28">
+                        <mxGeometry width="160" relative="1" as="geometry">
+                            <mxPoint x="-140" y="450" as="sourcePoint"/>
+                            <mxPoint x="20" y="450" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

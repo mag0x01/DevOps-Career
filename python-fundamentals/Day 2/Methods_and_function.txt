@@ -1,0 +1,15 @@
+#Question 1
+Write a function that you can pass an list as parameter with ip address and count the number of the ips that are the same.
+
+##################################################################################################################
+#Question 2 
+Write a Python function that take a string and calculate the number of upper case letters and lower case lettters.
+Sample String: "I Just start LEARNING Python, and i can't be More Excited about it"
+
+##################################################################################################################
+#Question 3
+Write a Python function to multiply all the numbers in a list
+
+##################################################################################################################
+#Question 4
+Write a Python function that takes a list and returns a new list with unique elements of the first list

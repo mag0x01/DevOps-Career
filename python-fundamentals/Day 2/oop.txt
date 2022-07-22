@@ -1,0 +1,70 @@
+# Object Oriented Programming Challenge
+
+#Question 1
+For this challenge, create a bank account class that has two attributes:
+
+* owner
+* balance
+
+and two methods:
+
+* deposit
+* withdraw
+
+As an added requirement, withdrawals may not exceed the available balance.
+
+Instantiate your class, make several deposits and withdrawals, and test to make sure the account can't be overdrawn.
+
+
+# Execute and output
+# 1.1. Instantiate the class
+acct1 = Account('Jose',100)
+# 1.2. Print the object
+print(acct1)
+Account owner:   Jose
+Account balance: $100
+
+# 1.3. Show the account owner attribute
+acct1.owner
+Jose
+
+# 1.4. Show the account balance attribute
+acct1.balance
+100
+# 1.5. Make a series of deposits and withdrawals
+acct1.deposit(50)
+Deposit Accepted
+
+acct1.withdraw(75)
+Withdrawal Accepted
+
+# 1.6. Make a withdrawal that exceeds the available balance
+acct1.withdraw(500)
+Funds Unavailable!
+
+##################################################################################################################
+
+#Question 2
+Write a Python program to create a Vehicle class with max_speed and kilometers instance attributes.
+
+##################################################################################################################
+#Question 3
+Create a child class Bus that will inherit all of the variables and methods of the Vehicle class
+
+##################################################################################################################
+#Question 4
+Create a Bus object that will inherit all of the variables and methods of the parent Vehicle class and display it.
+
+##################################################################################################################
+#Question 5
+Create a Bus class that inherits from the Vehicle class. Give the capacity argument of Bus.seating_capacity() a default value of 50.
+
+You can use the following code for your parent Vehicle class.
+class Vehicle:
+    def __init__(self, name, max_speed, mileage):
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
+
+    def seating_capacity(self, capacity):
+        return f"The seating capacity of a {self.name} is {capacity} passengers"
