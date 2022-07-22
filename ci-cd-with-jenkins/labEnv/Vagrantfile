@@ -1,0 +1,42 @@
+HOSTS = {
+  :jenkinsmain    => { :hostname => 'jenkinsmain.local',    :ip => '192.168.10.10',   :memory => '1536',  :cpu => "2",  :autostart => true},
+  :jenkinsnode1      => { :hostname => 'node1.local',      :ip => '192.168.20.20',   :memory => '512',   :cpu => "1",  :autostart => true}
+}
+
+# Install additional plugins if required
+required_plugins = %w( vagrant-vbguest vagrant-hosts vagrant-share )
+required_plugins.each do |plugin|
+  system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+end
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.box_check_update = false
+  config.vm.synced_folder ".", "/vagrant"
+  config.vbguest.no_remote = true
+  config.vbguest.auto_update = true
+
+  config.vm.provision "fix-no-tty", type: "shell" do |s|
+    s.privileged = false
+    s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+  end
+
+	HOSTS.each do |name, host|
+
+		config.vm.define name, autostart: host[:autostart] do |d|
+			d.vm.network "private_network", ip: host[:ip]
+			d.vm.provision :hosts, :sync_host => true
+			d.vm.hostname = host[:hostname]
+
+			d.vm.provider "virtualbox" do |v|
+				v.gui = false
+				v.name = host[:hostname]
+				v.memory = host[:memory]
+				v.cpus = host[:cpu]
+				v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+				v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+			end
+		end
+	end
+end

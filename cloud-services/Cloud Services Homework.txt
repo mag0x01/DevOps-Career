@@ -1,0 +1,21 @@
+SoD Cloud Services Homework
+
+For this lesson you will get the chance to spin up your own “local cloud” on your PC. Using virtualization tools, you will get hands on experience on some of the core features of the cloud: Reliability, Scalability, Elasticity and Fault tolerance.
+Prerequisite for this homework is having VirtualBox installed. Please use the following link to download VirtualBox on your PC:
+https://endava.sharepoint.com/Disciplines/itsms/ITSM%20Tools/Forms/DispForm.aspx?ID=465.
+Tasks
+•	Create 3 Linux virtual machines in VirtualBox. The choice for OS distribution is entirely up to you.
+Note: Do not make the VMs too large. 1 CPU, 8GB disk space and 512MB RAM should suffice.
+•	Deploy a static HTML page on port 80 that explains the steps you took to finish the tasks from this homework, using Apache2 or Nginx.
+Note: You are free to use previously learned tools for automating this setup (Ansible for configuration management, Docker for containerization, etc.)
+•	Optionally, add a load balancer to one instance, that will randomly route the traffic to one of the three servers on each request (Add an ID for each VM in the HTML content, to recognize on which server the LB routed).
+•	Now, scale in to 2 VMs. Document this process in the HTML files (locally, without deploying them to the servers). There should be no service downtime.
+Note: If you did the optional step, stop an instance that is not a load balancer.
+•	Scale up the existing VMs to 2 CPUs and 1GB RAM. Also document this process in the local HTML files.
+•	Now perform a deployment of the local HTML files to the servers.
+•	Scale out back to 3 VMs, by starting the instance you previously stopped. Make sure this instance has the latest HTML deployed.
+•	Scale down the two instances that you previously scaled up, back to 1 CPU and 512MB RAM.
+•	After documenting everything, deploy the latest version of the HTML page one more time.
+
+If your are really bored... try and fix this:
+https://github.com/Biohazardhpk/packstack-challenge

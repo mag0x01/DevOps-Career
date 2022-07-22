@@ -1,0 +1,89 @@
+pipeline {
+  agent {
+    label 'main'
+  }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
+  }
+  parameters {
+    booleanParam(name: 'demoBool', defaultValue: false, description: 'If set to TRUE it will run Optional stage')
+    string(name: 'branch', defaultValue: "", description: 'branch to clone')
+
+}
+  stages {
+    stage('Check Java version') {
+      steps {
+        sh 'java -version'
+      }
+    }
+    stage('User input') {
+      steps {
+        echo "Echo from user input"
+          timeout(1) {
+              input 'Are you sure you want to continue?'
+          }
+      }
+    }
+    stage('Failed stage') {
+      agent {
+        label 'node1'
+      }
+      steps {
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          echo "Echo from failed stage"
+          error('This stage is failed')
+        }
+      }
+    }
+    stage('Optional stage') {
+      when {
+        environment name: 'demoBool', value: 'true'
+      }
+      steps {
+        echo 'Echo from optional stage'
+      }
+    }
+    stage('Archive') {
+      steps {
+        echo 'Echo from Archive stage'
+        // clean workspace
+        deleteDir()
+
+        // create folder and files
+        sh """
+        mkdir demofolder
+        touch demofolder/Example1.txt
+        echo "Hello1" >> demofolder/Example1.txt
+        """
+        writeFile file: 'demofolder/Example2.txt', text: 'Hello from Bucharest!'
+        writeFile file: 'demofolder/Example3.json', text: 'Hello from json file!'
+
+        archiveArtifacts artifacts: 'demofolder/**', excludes: 'demofolder/*.json', onlyIfSuccessful: true
+      }
+    }
+    stage('Add colors') {
+      steps {
+        ansiColor('xterm') {
+          echo "\033[0;32mThis meesage is Green \033[0m"
+          echo "\033[0;34mThis meessage is Blue \033[0m"
+          echo "\033[38;5;202mThis message is Orange \033[0m"
+        }
+      }
+    }
+    stage('Get user data') {
+      steps {
+        wrap([$class: 'BuildUser']) {
+          echo "This job was triggered by ${BUILD_USER}. Email address is ${BUILD_USER_EMAIL}"
+        }
+      }
+    }
+    stage('Trigger CopyArtifacts') {
+      steps {
+        // in order for this to work you need to create a new job called CopyArtifacts that has one string parameter 'branch'
+        build job: 'CopyArtifacts', parameters: [
+        string(name: 'branch', value: "${params.branch}")
+        ]
+      }
+    }
+  }
+}

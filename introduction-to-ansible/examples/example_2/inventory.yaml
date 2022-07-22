@@ -1,0 +1,11 @@
+all:
+  hosts:
+    web1:
+      ansible_ssh_host: "52.200.206.20"
+    web2:
+      ansible_ssh_host: "3.232.11.76"
+  children:
+    webservers:
+      hosts:
+        web1:
+        web2:

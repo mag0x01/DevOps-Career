@@ -1,0 +1,23 @@
+---
+all:
+  children:
+    frontend:
+      children:
+        webapp:
+          hosts:
+            192.168.60.4:
+            192.168.60.5:
+        load-balancer:
+          hosts:
+            192.168.40.3:
+            192.168.40.4:
+    database:
+      hosts:
+        192.168.50.1:
+        192.168.50.2:
+
+
+
+
+
+

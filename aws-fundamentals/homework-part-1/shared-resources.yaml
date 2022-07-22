@@ -1,0 +1,315 @@
+Description: AWS Homework Part Shared Resources Creation
+Outputs:
+# RO Exports
+  RoIgwId:
+    Description: RO IGW ID export
+    Export:
+      Name: ro-igw-export
+    Value: !Ref 'RoIgw'
+  RoNgwId:
+    Description: RO NGW ID export
+    Export:
+      Name: ro-ngw-export
+    Value: !Ref 'RoNgw'
+  RoVpcId:
+    Description: RO VPC ID export
+    Export:
+      Name: ro-vpc-export
+    Value: !Ref 'RoVpc'
+# MD Exports
+  MdIgwId:
+    Description: MD IGW ID export
+    Export:
+      Name: md-igw-export
+    Value: !Ref 'MdIgw'
+  MdNgwId:
+    Description: MD NGW ID export
+    Export:
+      Name: md-ngw-export
+    Value: !Ref 'MdNgw'
+  MdVpcId:
+    Description: MD VPC ID export
+    Export:
+      Name: md-vpc-export
+    Value: !Ref 'MdVpc'
+# MK Exports
+  MkIgwId:
+    Description: MK IGW ID export
+    Export:
+      Name: mk-igw-export
+    Value: !Ref 'MkIgw'
+  MkNgwId:
+    Description: MK NGW ID export
+    Export:
+      Name: mk-ngw-export
+    Value: !Ref 'MkNgw'
+  MkVpcId:
+    Description: MK VPC ID export
+    Export:
+      Name: mk-vpc-export
+    Value: !Ref 'MkVpc'
+# BG Exports
+  BgIgwId:
+    Description: BG IGW ID export
+    Export:
+      Name: bg-igw-export
+    Value: !Ref 'BgIgw'
+  BgNgwId:
+    Description: BG NGW ID export
+    Export:
+      Name: bg-ngw-export
+    Value: !Ref 'BgNgw'
+  BgVpcId:
+    Description: BG VPC ID export
+    Export:
+      Name: bg-vpc-export
+    Value: !Ref 'BgVpc'
+Resources:
+# RO Resource Creation
+  RoVpc:
+    Properties:
+      CidrBlock: 10.11.0.0/16
+      Tags:
+        - Key: Name
+          Value: RO VPC
+    Type: AWS::EC2::VPC
+  RoSubnet:
+    Properties:
+      AvailabilityZone: eu-west-1a
+      CidrBlock: 10.11.0.0/28
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: RO Shared Public Subnet
+      VpcId: !Ref 'RoVpc'
+    Type: AWS::EC2::Subnet
+  RoIgw:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: RO Internet Gateway
+    Type: AWS::EC2::InternetGateway
+  RoVpcGatewayAttach:
+    Properties:
+      InternetGatewayId: !Ref 'RoIgw'
+      VpcId: !Ref 'RoVpc'
+    Type: AWS::EC2::VPCGatewayAttachment
+  RoNgwEip:
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  RoNgw:
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - RoNgwEip
+        - AllocationId
+      SubnetId: !Ref 'RoSubnet'
+      Tags:
+        - Key: Name
+          Value: RO NAT Gateway
+    Type: AWS::EC2::NatGateway
+  RoPublicRouteTable:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: RO Public Route Table
+      VpcId: !Ref 'RoVpc'
+    Type: AWS::EC2::RouteTable
+  RoPublicRoute:
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'RoIgw'
+      RouteTableId: !Ref 'RoPublicRouteTable'
+    Type: AWS::EC2::Route
+  RoPublicRouteTableAssociation:
+    Properties:
+      RouteTableId: !Ref 'RoPublicRouteTable'
+      SubnetId: !Ref 'RoSubnet'
+    Type: AWS::EC2::SubnetRouteTableAssociation
+# MD Resource Creation
+  MdVpc:
+    Properties:
+      CidrBlock: 10.12.0.0/16
+      Tags:
+        - Key: Name
+          Value: MD VPC
+    Type: AWS::EC2::VPC
+  MdSubnet:
+    Properties:
+      AvailabilityZone: eu-west-1a
+      CidrBlock: 10.12.0.0/28
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: MD Shared Public Subnet
+      VpcId: !Ref 'MdVpc'
+    Type: AWS::EC2::Subnet
+  MdIgw:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MD Internet Gateway
+    Type: AWS::EC2::InternetGateway
+  MdVpcGatewayAttach:
+    Properties:
+      InternetGatewayId: !Ref 'MdIgw'
+      VpcId: !Ref 'MdVpc'
+    Type: AWS::EC2::VPCGatewayAttachment
+  MdNgwEip:
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  MdNgw:
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - MdNgwEip
+        - AllocationId
+      SubnetId: !Ref 'MdSubnet'
+      Tags:
+        - Key: Name
+          Value: MD NAT Gateway
+    Type: AWS::EC2::NatGateway
+  MdPublicRouteTable:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MD Public Route Table
+      VpcId: !Ref 'MdVpc'
+    Type: AWS::EC2::RouteTable
+  MdPublicRoute:
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'MdIgw'
+      RouteTableId: !Ref 'MdPublicRouteTable'
+    Type: AWS::EC2::Route
+  MdPublicRouteTableAssociation:
+    Properties:
+      RouteTableId: !Ref 'MdPublicRouteTable'
+      SubnetId: !Ref 'MdSubnet'
+    Type: AWS::EC2::SubnetRouteTableAssociation
+# MK Resource Creation
+  MkVpc:
+    Properties:
+      CidrBlock: 10.13.0.0/16
+      Tags:
+        - Key: Name
+          Value: MK VPC
+    Type: AWS::EC2::VPC
+  MkSubnet:
+    Properties:
+      AvailabilityZone: eu-west-1a
+      CidrBlock: 10.13.0.0/28
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: MK Shared Public Subnet
+      VpcId: !Ref 'MkVpc'
+    Type: AWS::EC2::Subnet
+  MkIgw:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MK Internet Gateway
+    Type: AWS::EC2::InternetGateway
+  MkVpcGatewayAttach:
+    Properties:
+      InternetGatewayId: !Ref 'MkIgw'
+      VpcId: !Ref 'MkVpc'
+    Type: AWS::EC2::VPCGatewayAttachment
+  MkNgwEip:
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  MkNgw:
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - MkNgwEip
+        - AllocationId
+      SubnetId: !Ref 'MkSubnet'
+      Tags:
+        - Key: Name
+          Value: MK NAT Gateway
+    Type: AWS::EC2::NatGateway
+  MkPublicRouteTable:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: MK Public Route Table
+      VpcId: !Ref 'MkVpc'
+    Type: AWS::EC2::RouteTable
+  MkPublicRoute:
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'MkIgw'
+      RouteTableId: !Ref 'MkPublicRouteTable'
+    Type: AWS::EC2::Route
+  MkPublicRouteTableAssociation:
+    Properties:
+      RouteTableId: !Ref 'MkPublicRouteTable'
+      SubnetId: !Ref 'MkSubnet'
+    Type: AWS::EC2::SubnetRouteTableAssociation
+# BG Resource Creation
+  BgVpc:
+    Properties:
+      CidrBlock: 10.14.0.0/16
+      Tags:
+        - Key: Name
+          Value: BG VPC
+    Type: AWS::EC2::VPC
+  BgSubnet:
+    Properties:
+      AvailabilityZone: eu-west-1a
+      CidrBlock: 10.14.0.0/28
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: BG Shared Public Subnet
+      VpcId: !Ref 'BgVpc'
+    Type: AWS::EC2::Subnet
+  BgIgw:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: BG Internet Gateway
+    Type: AWS::EC2::InternetGateway
+  BgVpcGatewayAttach:
+    Properties:
+      InternetGatewayId: !Ref 'BgIgw'
+      VpcId: !Ref 'BgVpc'
+    Type: AWS::EC2::VPCGatewayAttachment
+  BgNgwEip:
+    Properties:
+      Domain: vpc
+    Type: AWS::EC2::EIP
+  BgNgw:
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+        - BgNgwEip
+        - AllocationId
+      SubnetId: !Ref 'BgSubnet'
+      Tags:
+        - Key: Name
+          Value: BG NAT Gateway
+    Type: AWS::EC2::NatGateway
+  BgPublicRouteTable:
+    Properties:
+      Tags:
+        - Key: Name
+          Value: BG Public Route Table
+      VpcId: !Ref 'BgVpc'
+    Type: AWS::EC2::RouteTable
+  BgPublicRoute:
+    Properties:
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: !Ref 'BgIgw'
+      RouteTableId: !Ref 'BgPublicRouteTable'
+    Type: AWS::EC2::Route
+  BgPublicRouteTableAssociation:
+    Properties:
+      RouteTableId: !Ref 'BgPublicRouteTable'
+      SubnetId: !Ref 'BgSubnet'
+    Type: AWS::EC2::SubnetRouteTableAssociation

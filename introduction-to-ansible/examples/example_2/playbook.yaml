@@ -1,0 +1,48 @@
+---
+- hosts: webservers
+  become: True
+  gather_facts: False
+  vars:
+    devops_user: devops
+
+  tasks:
+
+    - name: Make sure we have a 'admin' group
+      group:
+        name: admin
+        state: present
+
+    - name: Allow 'admin' group to have passwordless sudo
+      #since this is part of the pre-task homework..
+      #you'll have to add this part after you are done with the pre-task
+
+    - name: Add devops user
+      user:
+        name: "{{ devops_user }}"
+        comment: Generic Devops
+        shell: /bin/bash
+        group: admin
+
+    - name: add key
+      #same here, try to use variables in this example
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Start nginx
+      service:
+          name: nginx
+          state: started
+    
+    - name: Copy index html file
+      template: 
+        src: index.conf
+        dest: /var/www//html/index.html
+
+    - name: Restart nginx
+      service: 
+        name: nginx 
+        state: restarted 
+        enabled: yes

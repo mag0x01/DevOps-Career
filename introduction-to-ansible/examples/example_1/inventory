@@ -1,0 +1,13 @@
+[webapp]
+52.200.206.20
+3.232.11.76
+
+[lb]
+3.232.11.76
+
+[database]
+34.224.103.166
+
+[frontend:children]
+webapp
+lb
